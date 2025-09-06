@@ -57,7 +57,7 @@ const Navbar = () => {
 
             {userData ? <Avatar sx={{ display: { sm: "block", xs: "none" } }} onClick={e => setOpen(true)} src={userData?.avatar} />
               : <Avatar onClick={() => setOpen(true)} sx={{ bgcolor: deepOrange[500], height: 30, width: 30, display: { sm: "flex", xs: "none" } }}> U</Avatar>}
-              <TempDrawer/>
+              {userData && <TempDrawer/>}
           </Box>
           <Menu
             sx={{ mt: 5 }}
