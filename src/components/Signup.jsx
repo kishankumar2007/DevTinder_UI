@@ -5,7 +5,7 @@ import axios from "axios"
 import BASE_URL from "../constant"
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-// import { OtpBox } from './OtpBox';
+import { OtpBox } from './OtpBox';
 
 const Signup = () => {
     const [firstName, setFirstName] = useState('')
@@ -60,10 +60,10 @@ const Signup = () => {
                         <TextField value={lastName} onChange={e => setLastName(e.target.value)} id="lastName" label="Last Name" variant="outlined" required />
                     </Box>
 
-                    {/* <Box width={"100%"} display={"flex"} gap={1}> */}
+                    <Box width={"100%"} display={"flex"} gap={1}>
                         <TextField value={email} onChange={e => setEmail(e.target.value)} fullWidth id="email" label="Email"variant="outlined" required />
-                        {/* {email && <OtpBox email={email} />}
-                    </Box> */}
+                        {email && <OtpBox email={email} />}
+                    </Box>
 
 
                     <TextField value={password} onChange={e => setPassword(e.target.value)} fullWidth id="password" label="Password" type='password' variant="outlined" required />
