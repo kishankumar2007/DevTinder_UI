@@ -4,7 +4,7 @@ import { useState } from 'react'
 import BASE_URL from '../constant'
 import { login } from "../store/authSlice"
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 const Login = () => {
     const [loading, setLoading] = useState(false)
@@ -61,7 +61,7 @@ const Login = () => {
                 <TextField value={password} onChange={e => setPassword(e.target.value)} fullWidth id="password" label="Password" type='password' variant="outlined" required />
                 {error && <Typography variant='p' fontSize={"xs"} color='red'>{error}</Typography>}
                 <Button onClick={handleClick} fullWidth variant='contained'>{loading?"Logging in...": "Login"}</Button>
-                <Typography variant='body2' component="p">Don't have an account? <Typography sx={{ textDecoration: "none", color: "blueviolet" }} href='/signup' component="a">Register</Typography></Typography>
+                <Typography variant='body2' component="p">Don't have an account? <Link style={{textDecoration:"none"}} to='/signup'>Register</Link></Typography>
             </Stack>
         </Box>
     )

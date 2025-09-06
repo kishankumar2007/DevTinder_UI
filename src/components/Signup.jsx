@@ -3,7 +3,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import { useState } from 'react';
 import axios from "axios"
 import BASE_URL from "../constant"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { OtpBox } from './OtpBox';
 
@@ -52,24 +52,24 @@ const Signup = () => {
         <Box flex={5} alignContent={"center"} mt={8} >
             <Box p={1} borderRadius={5} sx={{ width: { xs: 270, sm: 400 } }} mx="auto">
                 <Typography mt={2} variant='h4' textAlign={"center"}>
-                    <CodeIcon color="secondary" /> Sign up</Typography>
+                    Sign up</Typography>
                 <Stack mt={5} display="flex" alignItems={"center"} flexDirection="column" gap={2} required>
 
-                    <Box  display={"flex"} gap={1}>
+                    <Box display={"flex"} gap={1}>
                         <TextField value={firstName} onChange={e => setFirstName(e.target.value)} id="firstName" label="First Name" variant="outlined" required />
                         <TextField value={lastName} onChange={e => setLastName(e.target.value)} id="lastName" label="Last Name" variant="outlined" required />
                     </Box>
 
-                    <Box width={"100%"} display={"flex"} gap={1}>
-                        <TextField value={email} onChange={e => setEmail(e.target.value)} fullWidth id="email" label="Email"variant="outlined" required />
-                        {email && <OtpBox email={email} />}
-                    </Box>
+                    {/* <Box width={"100%"} display={"flex"} gap={1}> */}
+                    <TextField value={email} onChange={e => setEmail(e.target.value)} fullWidth id="email" label="Email" variant="outlined" required />
+                    {/* {email && <OtpBox email={email} />}
+                    </Box> */}
 
 
                     <TextField value={password} onChange={e => setPassword(e.target.value)} fullWidth id="password" label="Password" type='password' variant="outlined" required />
                     {error && <Typography variant='body2' color='error'>{error}</Typography>}
                     <Button onClick={registerUser} type='submit' fullWidth size='large' variant='contained'>Create Account</Button>
-                    <Typography variant='body2' component="p">Already have an account? <Typography href='/login' component="a">Login</Typography></Typography>
+                    <Typography variant='body2' component="p">Already have an account? <Link style={{textDecoration:"none"}} to='/login'>Login</Link></Typography>
                 </Stack>
             </Box>
         </Box>
