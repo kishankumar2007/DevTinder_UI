@@ -84,13 +84,13 @@ export default function TemporaryDrawer() {
   }, [open]);
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" >
-      <List sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper' }} aria-label="contacts">
+    <Box sx={{ width: 250, color:"#f9f9f9",bgcolor:"#1e1e1e",minHeight:"100vh" }} role="presentation" >
+      <List sx={{ width: '100%', maxWidth: 300 }} aria-label="contacts">
 
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/"} >
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon><Home /></ListItemIcon>
+              <ListItemIcon><Home sx={{color:"gray"}} /></ListItemIcon>
               <ListItemText primary="Home" />
             </ListItemButton>
           </ListItem>
@@ -100,7 +100,7 @@ export default function TemporaryDrawer() {
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/profile"} >
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon><AccountCircleIcon /></ListItemIcon>
+              <ListItemIcon><AccountCircleIcon sx={{color:"gray"}} /></ListItemIcon>
               <ListItemText primary="Profile" />
             </ListItemButton>
           </ListItem>
@@ -110,7 +110,7 @@ export default function TemporaryDrawer() {
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/feed"} >
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon><ExploreIcon /></ListItemIcon>
+              <ListItemIcon><ExploreIcon sx={{color:"gray"}} /></ListItemIcon>
               <ListItemText primary="Explore" />
             </ListItemButton>
           </ListItem>
@@ -120,7 +120,7 @@ export default function TemporaryDrawer() {
           <ListItem  disablePadding>
             <ListItemButton>
               <ListItemIcon><Logout sx={{color:"red"}} /></ListItemIcon>
-              <ListItemText primary="Logout" />
+              <ListItemText sx={{color:"red"}} primary="Logout" />
             </ListItemButton>
           </ListItem>
         </Link>
@@ -134,8 +134,8 @@ export default function TemporaryDrawer() {
         onChange={handleToggleChange}
         aria-label="Platform"
       >
-        <ToggleButton onClick={getConnections} sx={{ width: "120px", ml:1}} value="Connections">Connections</ToggleButton>
-        <ToggleButton onClick={getRequests} sx={{ width: "120px",}} value="Requests">Requests</ToggleButton>
+        <ToggleButton onClick={getConnections} sx={{ width: "120px", ml:1,color:"gray"}} value="Connections">Connections</ToggleButton>
+        <ToggleButton onClick={getRequests} sx={{ width: "120px",color:"gray"}} value="Requests">Requests</ToggleButton>
       </ToggleButtonGroup>
 
 
@@ -184,7 +184,7 @@ export default function TemporaryDrawer() {
   return (
     <div>
       <Button variant='' onClick={toggleDrawer(true)}>
-        <MenuIcon sx={{ display: { sm: "block", xs: "block" } }} />
+        <MenuIcon sx={{ display: { sm: "none", xs: "block" } }} />
       </Button>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}

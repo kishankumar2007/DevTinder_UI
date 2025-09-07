@@ -37,36 +37,36 @@ const Sidebar = () => {
     }
   }
   return (
-    <Box alignItems="center" sx={{ display: { xs: "none", sm: "block", borderRight: "2px solid whiteSmoke" } }} p={2} flex="1">
+    <Box alignItems="center" sx={{display: { xs: "none", sm: "block", borderRight: "2px solid #242424", maxWidth:300} }} p={2} flex="1">
       <List
-        sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper' }}
+        sx={{ width: '100%', maxWidth: 300, color:"#f9f9f9" }}
         aria-label="contacts"
       >
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/"} >
-          <ListItem disablePadding>
+          <ListItem sx={{"&:hover":{bgcolor:"#242424", borderRadius:2}}} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <Home />
+                <Home sx={{color:"gray"}} />
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItemButton>
           </ListItem>
         </Link>
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/profile"} >
-          <ListItem disablePadding>
+          <ListItem sx={{"&:hover":{bgcolor:"#242424", borderRadius:2}}} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <AccountCircleIcon />
+                <AccountCircleIcon sx={{color:"gray"}} />
               </ListItemIcon>
               <ListItemText primary="Profile" />
             </ListItemButton>
           </ListItem>
         </Link>
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/feed"} >
-          <ListItem disablePadding>
+          <ListItem sx={{"&:hover":{bgcolor:"#242424", borderRadius:2}}} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <ExploreIcon />
+                <ExploreIcon sx={{color:"gray"}} />
               </ListItemIcon>
               <ListItemText primary="Explore" />
             </ListItemButton>
@@ -81,15 +81,15 @@ const Sidebar = () => {
         onChange={''}
         aria-label="Platform"
       >
-        <ToggleButton onClick={getConnections} sx={{ width: "130px" }} value="Connections">Connections</ToggleButton>
-        <ToggleButton onClick={getRequests} sx={{ width: "130px" }} value="Requests">Requests</ToggleButton>
+        <ToggleButton onClick={getConnections} sx={{ width: "130px",color:"#f9f9f9" }} value="Connections">Connections</ToggleButton>
+        <ToggleButton onClick={getRequests} sx={{ width: "130px", color:"#f9f9f9" }} value="Requests">Requests</ToggleButton>
       </ToggleButtonGroup>
 
       <List
         sx={{
           width: '100%',
           maxWidth: 360,
-          bgcolor: 'background.paper',
+          color:"#f9f9f9",
           position: 'relative',
           overflow: 'auto',
           maxHeight: 400,

@@ -62,7 +62,7 @@ const SmallCard = ({ user, type }) => {
   }
   return (
     <Box sx={{ mt: 1 }}>
-      <Stack sx={{ boxShadow: 2, bgcolor: 'whitesmoke', py: 1, borderRadius: 2 }} display={"flex"} alignItems={"center"} justifyContent={"center"} gap={2} flexDirection={"row"} width={"100%"}>
+      <Stack sx={{ boxShadow: 2, bgcolor: '#242424', py: 1, borderRadius: 2 }} display={"flex"} alignItems={"center"} justifyContent={"center"} gap={2} flexDirection={"row"} width={"100%"}>
         <Avatar src={avatar} alt='profile_pic' />
 
         <Box >
