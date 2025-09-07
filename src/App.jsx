@@ -2,7 +2,7 @@ import { Box, Stack } from '@mui/material'
 import Navbar from "./components/Navbar"
 import Sidebar from "./components/Sidebar"
 import Rightbar from "./components/Rightbar"
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import axios from 'axios'

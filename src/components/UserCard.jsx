@@ -2,7 +2,7 @@ import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@
 import axios from 'axios'
 import BASE_URL from "../constant"
 import { toast } from 'react-toastify'
-import {removeUserFromFeed} from "../store/userSlice"
+import { removeUserFromFeed } from "../store/userSlice"
 import { useDispatch } from 'react-redux'
 const UserCard = ({ user }) => {
   const dispatch = useDispatch()
@@ -50,7 +50,7 @@ const UserCard = ({ user }) => {
 
   }
   return (
-    <Card sx={{ maxWidth: 350, width: 300, maxHeight: 450 }}>
+    <Card sx={{ maxWidth: 350, width: 300, maxHeight: 450, bgcolor:"#242424",color:"#f9f9f9",  border: "1px solid rgba(128,128,128,0.2)" }}>
       <CardMedia
         component="img"
         alt="Profile Image"
@@ -62,7 +62,7 @@ const UserCard = ({ user }) => {
         <Typography variant="h6">
           {user?.firstName + " " + user?.lastName}
         </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary',textTransform:"capitalize" }}>
+        <Typography variant="body2" sx={{ color: 'text.secondary', textTransform: "capitalize" }}>
           {user?.age && user?.gender} {user?.age && `| ${user?.age}`}
         </Typography>
         <Typography variant="body2" sx={{ color: 'text.secondary', py: 0 }}>
