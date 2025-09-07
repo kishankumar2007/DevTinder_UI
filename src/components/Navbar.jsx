@@ -15,7 +15,6 @@ import TempDrawer from './Drawer';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false)
-  const [toggle, setToggle] = useState(false)
   const StyledToolbar = styled(Toolbar)({
     display: "flex",
     justifyContent: "space-between"
@@ -49,10 +48,10 @@ const Navbar = () => {
   return (
     <Box>
 
-      <AppBar position='sticky' >
+      <AppBar position='sticky' sx={{backgroundColor: "#1e1e1e"}} >
         <StyledToolbar  >
-          <Typography fontSize="large" sx={{ display: { sm: "block", xs: "none" } }} variant='h6'>DevTinder</Typography>
-          <CodeIcon sx={{ display: { sm: "none", xs: "block", } }} />
+          <Typography fontWeight={"bold"} variant='h5'>
+            <span style={{color:"transparent", background:"linear-gradient(90deg, #00c6ff,#00c5aa)", backgroundClip:"text", overflow:"hidden"}}>DevTinder</span></Typography>
           <Box display="flex" alignItems="center" gap={2}>
 
             {userData ? <Avatar sx={{ display: { sm: "block", xs: "none" } }} onClick={e => setOpen(true)} src={userData?.avatar} />

@@ -11,7 +11,6 @@ import BASE_URL from './constant'
 import { ToastContainer } from 'react-toastify'
 import {addConnection} from "./store/connectionSlice.js"
 
-
 const App = () => {
   const authStatus = useSelector(state => state.auth.status)
   const dispatch = useDispatch()
@@ -31,7 +30,7 @@ const App = () => {
   }, [])
 
   return (
-    <Box>
+    <Box sx={{bgcolor:"#1e1e1e", minHeight:"100vh"}}>
       <Navbar />
       <Stack width={"100%"} direction="row" justifyContent={"space-between"}>
         {authStatus && <Sidebar />}

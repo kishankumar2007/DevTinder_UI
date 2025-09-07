@@ -6,6 +6,7 @@ import { login } from "../store/authSlice"
 import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import  {StyledTextField}  from './StyledTextField'
 const Login = () => {
     const [loading, setLoading] = useState(false)
     const [email, setEmail] = useState('')
@@ -36,8 +37,8 @@ const Login = () => {
                     draggable: true,
                     progress: undefined,
                     theme: "dark",
-                    style:{
-                        width:170
+                    style: {
+                        width: 170
                     }
                 });
                 navigate("/")
@@ -45,7 +46,7 @@ const Login = () => {
             }
         } catch (error) {
             setError(error.response.data.message)
-        }finally{
+        } finally {
             setLoading(false)
         }
 
@@ -54,14 +55,15 @@ const Login = () => {
         <Box flex={5} alignContent={"center"} mt={12} >
 
             <Typography variant='h4' textAlign={"center"}>
-                Login
+                <span style={{ color: "transparent", background: "linear-gradient(90deg, #00c6ff,#00c5aa)", backgroundClip: "text", overflow: "hidden" }}>Login</span>
             </Typography>
             <Stack maxWidth={400} p={2} mx="auto" display="flex" alignItems={"center"} flexDirection="column" gap={2} required>
-                <TextField value={email} onChange={e => setEmail(e.target.value)} fullWidth id="email" label="Email" variant="outlined" required />
-                <TextField value={password} onChange={e => setPassword(e.target.value)} fullWidth id="password" label="Password" type='password' variant="outlined" required />
+                <StyledTextField value={email} onChange={e => setEmail(e.target.value)} fullWidth id="email" label="Email" variant="outlined" required />
+                <StyledTextField value={password} onChange={(e) => setPassword(e.target.value)} fullWidth id="password" type="password" label="password" variant="outlined" required />
+
                 {error && <Typography variant='p' fontSize={"xs"} color='red'>{error}</Typography>}
-                <Button onClick={handleClick} fullWidth variant='contained'>{loading?"Logging in...": "Login"}</Button>
-                <Typography variant='body2' component="p">Don't have an account? <Link style={{textDecoration:"none"}} to='/signup'>Register</Link></Typography>
+                <Button sx={{ py: 1, textTransform: "none", fontSize: "18px", background: "linear-gradient(90deg, #00c6ff, #00c5aa)" }} onClick={handleClick} fullWidth variant='contained'>{loading ? "Logging in..." : "Login"}</Button>
+                <Typography sx={{ color: "gray" }} variant='body2' component="p">Don't have an account? <Link style={{ textDecoration: "none", color: "#00c6ff" }} to='/signup'>Register</Link></Typography>
             </Stack>
         </Box>
     )

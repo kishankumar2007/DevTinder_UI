@@ -20,7 +20,7 @@ import SmallCard from './SmallCard';
 import GroupIcon from '@mui/icons-material/Group';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
-import { Home } from '@mui/icons-material';
+import { Home, Logout } from '@mui/icons-material';
 import ExploreIcon from '@mui/icons-material/Explore';
 import { addConnection, connectionRequest } from '../store/connectionSlice';
 import BASE_URL from '../constant';
@@ -76,7 +76,7 @@ export default function TemporaryDrawer() {
     }
   };
 
-  // 🚀 Auto-fetch connections when drawer opens
+
   useEffect(() => {
     if (open) {
       getConnections();
@@ -86,7 +86,7 @@ export default function TemporaryDrawer() {
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" >
       <List sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper' }} aria-label="contacts">
-        {/* Home */}
+
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/"} >
           <ListItem disablePadding>
             <ListItemButton>
@@ -96,7 +96,7 @@ export default function TemporaryDrawer() {
           </ListItem>
         </Link>
 
-        {/* Profile */}
+
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/profile"} >
           <ListItem disablePadding>
             <ListItemButton>
@@ -106,12 +106,21 @@ export default function TemporaryDrawer() {
           </ListItem>
         </Link>
 
-        {/* Explore */}
+
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/feed"} >
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon><ExploreIcon /></ListItemIcon>
               <ListItemText primary="Explore" />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+
+        <Link style={{ textDecoration: "none", color: "inherit" }} to={"/feed"} >
+          <ListItem  disablePadding>
+            <ListItemButton>
+              <ListItemIcon><Logout sx={{color:"red"}} /></ListItemIcon>
+              <ListItemText primary="Logout" />
             </ListItemButton>
           </ListItem>
         </Link>
@@ -129,7 +138,7 @@ export default function TemporaryDrawer() {
         <ToggleButton onClick={getRequests} sx={{ width: "120px",}} value="Requests">Requests</ToggleButton>
       </ToggleButtonGroup>
 
-      {/* Content Section */}
+
       <Box sx={{ mt: 2 }}>
         {loading && (
           <Box display="flex" justifyContent="center" alignItems="center" mt={3}>
