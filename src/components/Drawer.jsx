@@ -139,7 +139,7 @@ export default function TemporaryDrawer() {
       </ToggleButtonGroup>
 
 
-      <Box sx={{ mt: 2 }}>
+      <Box sx={{ mt: 2 , bgcolor:"#1e1e1e"}}>
         {loading && (
           <Box display="flex" justifyContent="center" alignItems="center" mt={3}>
             <CircularProgress />
@@ -157,7 +157,7 @@ export default function TemporaryDrawer() {
             sx={{
               width: '100%',
               maxWidth: 360,
-              bgcolor: 'background.paper',
+              bgcolor: '#1e1e1e',
               position: 'relative',
               overflow: 'auto',
               maxHeight: 400,
@@ -183,10 +183,10 @@ export default function TemporaryDrawer() {
 
   return (
     <div>
-      <Button variant='' onClick={toggleDrawer(true)}>
-        <MenuIcon sx={{ display: { sm: "none", xs: "block" } }} />
+      <Button variant='' >
+        <MenuIcon onClick={toggleDrawer(true)} sx={{ display: { sm: "none", xs: "block" } }} />
       </Button>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+      <Drawer bgcolor="#1e1e1e" open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
     </div>
