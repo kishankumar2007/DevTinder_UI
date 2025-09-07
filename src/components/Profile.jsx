@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, FormControl, InputLabel, MenuItem, Select, Stack, TextField, Typography, } from '@mui/material'
+import { Box, Button, CircularProgress, FormControl, MenuItem, Stack, TextField, Typography, } from '@mui/material'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +7,7 @@ import BASE_URL from '../constant';
 import { toast } from 'react-toastify';
 import { login } from "../store/authSlice"
 import { StyledTextField } from './StyledTextField';
+
 const Profile = () => {
   const [loading, setLoading] = useState(false)
   const [firstName, setFirstName] = useState('')

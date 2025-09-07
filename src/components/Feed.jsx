@@ -1,4 +1,4 @@
-import { Box, Button, Stack, } from '@mui/material'
+import { Box, Button, CircularProgress, Stack, } from '@mui/material'
 import UserCard from './UserCard'
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
@@ -7,32 +7,32 @@ import { useEffect, useState } from 'react'
 import { setUsers } from "../store/userSlice"
 
 const Feed = () => {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const feedUsers = useSelector(state => state.users.users)
-  const authStatus = useSelector(state => state.auth.status)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    try {
-      const fetchUsers = async () => {
-        const userData = await axios.get(BASE_URL + "/user/feed", { withCredentials: true })
-        dispatch(setUsers(userData.data))
+    const fetchUsers = async () => {
+      setLoading(true);
+      try {
+        const userData = await axios.get(BASE_URL + "/user/feed", { withCredentials: true });
+        dispatch(setUsers(userData.data));
+      } catch (error) {
+        console.log(error.message);
+      } finally {
+        setLoading(false);
       }
-      if (authStatus) {
-        setLoading(true)
-        fetchUsers()
-          setLoading(true)
-        }
-    } catch (error) {
-      console.log(error.message)
-    } finally { setLoading(false) }
-  }, [])
+    };
+
+    fetchUsers();
+  }, [dispatch]);
+
 
   return (
     <Box flex="5" height={"90vh"} sx={{ overflowY: "scroll" }}>
       {loading ? <Stack mb={30} justifyContent={"center"} mt={30} border={"none"} direction="row" spacing={2}>
-        <Button loading loadingPosition="start">
-          Loading...
+        <Button disabled>
+          <CircularProgress size={25} sx={{ color: "#fff", mr: 1 }} />
         </Button>
       </Stack> : <Stack display="flex" justifyContent={"center"} flexDirection={"row"} pt={2} gap={2} flexWrap={"wrap"} flexShrink={0}>
         {feedUsers.map((user, index) => <UserCard key={index} user={user} />)}
