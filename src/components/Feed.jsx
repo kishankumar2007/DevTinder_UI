@@ -4,6 +4,7 @@ import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
 import BASE_URL from "../constant"
 import { useEffect, useState } from 'react'
+import GroupIcon from '@mui/icons-material/Group';
 import { setUsers } from "../store/userSlice"
 
 const Feed = () => {
@@ -36,7 +37,7 @@ const Feed = () => {
         </Button>
       </Stack> : (feedUsers.length > 0 ? <Stack display="flex" justifyContent={"center"} flexDirection={"row"} pt={2} gap={2} flexWrap={"wrap"} flexShrink={0}>
         {feedUsers.map((user, index) => <UserCard key={index} user={user} />)}
-      </Stack> : <Typography display="flex" justifyContent="center" textAlign="center" mt={5} gap={2} variant='h6' alignItems="center">No user found 🥲!<GroupIcon sx={{ opacity: "50%" }} /></Typography>)
+      </Stack> : <Typography display="flex" justifyContent="center" textAlign="center" mt={5} gap={2} variant='h6' alignItems="center">No user found! <GroupIcon sx={{ opacity: "50%" }} /></Typography>)
       }
     </Box>
   )
