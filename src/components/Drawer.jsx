@@ -1,30 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  ToggleButton,
-  ToggleButtonGroup,
-  Typography,
-  List,
-  CircularProgress,
-} from '@mui/material';
+import { ListItem, ListItemButton, ListItemIcon, ListItemText, ToggleButton, ToggleButtonGroup,  Typography,  List, CircularProgress } from '@mui/material';
 import SmallCard from './SmallCard';
 import GroupIcon from '@mui/icons-material/Group';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Home, Logout } from '@mui/icons-material';
 import ExploreIcon from '@mui/icons-material/Explore';
+import {logout} from "../store/authSlice"
 import { addConnection, connectionRequest } from '../store/connectionSlice';
 import BASE_URL from '../constant';
-
+import { toast } from 'react-toastify';
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = useState(false);
@@ -35,7 +26,7 @@ export default function TemporaryDrawer() {
   const dispatch = useDispatch();
   const connectionRequests = useSelector(state => state.connection.connectionRequests);
   const myConnections = useSelector(state => state.connection.myConnection);
-
+  const navigate = useNavigate()
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
@@ -76,6 +67,26 @@ export default function TemporaryDrawer() {
     }
   };
 
+  const handleClick = async () => {
+    const res = await axios.post(BASE_URL + "/logout", {}, { withCredentials: true })
+    toast.success(res?.data, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      style: {
+        width: 170
+      }
+    });
+    dispatch(logout())
+    dispatch(addConnection([]))
+    dispatch(connectionRequest([]))
+    navigate("/login")
+  }
 
   useEffect(() => {
     if (open) {
@@ -84,13 +95,13 @@ export default function TemporaryDrawer() {
   }, [open]);
 
   const DrawerList = (
-    <Box sx={{ width: 250, color:"#f9f9f9",bgcolor:"#1e1e1e",minHeight:"100vh" }} role="presentation" >
+    <Box sx={{ width: 250, color: "#f9f9f9", bgcolor: "#1e1e1e", minHeight: "100vh" }} role="presentation" >
       <List sx={{ width: '100%', maxWidth: 300 }} aria-label="contacts">
 
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/"} >
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon><Home sx={{color:"gray"}} /></ListItemIcon>
+              <ListItemIcon><Home sx={{ color: "gray" }} /></ListItemIcon>
               <ListItemText primary="Home" />
             </ListItemButton>
           </ListItem>
@@ -100,7 +111,7 @@ export default function TemporaryDrawer() {
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/profile"} >
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon><AccountCircleIcon sx={{color:"gray"}} /></ListItemIcon>
+              <ListItemIcon><AccountCircleIcon sx={{ color: "gray" }} /></ListItemIcon>
               <ListItemText primary="Profile" />
             </ListItemButton>
           </ListItem>
@@ -110,17 +121,17 @@ export default function TemporaryDrawer() {
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/feed"} >
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon><ExploreIcon sx={{color:"gray"}} /></ListItemIcon>
+              <ListItemIcon><ExploreIcon sx={{ color: "gray" }} /></ListItemIcon>
               <ListItemText primary="Explore" />
             </ListItemButton>
           </ListItem>
         </Link>
 
-        <Link style={{ textDecoration: "none", color: "inherit" }} to={"/feed"} >
-          <ListItem  disablePadding>
+        <Link onClick={handleClick} style={{ textDecoration: "none", color: "inherit" }} to={"/feed"} >
+          <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon><Logout sx={{color:"red"}} /></ListItemIcon>
-              <ListItemText sx={{color:"red"}} primary="Logout" />
+              <ListItemIcon><Logout sx={{ color: "red" }} /></ListItemIcon>
+              <ListItemText sx={{ color: "red" }} primary="Logout" />
             </ListItemButton>
           </ListItem>
         </Link>
@@ -134,12 +145,12 @@ export default function TemporaryDrawer() {
         onChange={handleToggleChange}
         aria-label="Platform"
       >
-        <ToggleButton onClick={getConnections} sx={{ width: "120px", ml:1,color:"gray"}} value="Connections">Connections</ToggleButton>
-        <ToggleButton onClick={getRequests} sx={{ width: "120px",color:"gray"}} value="Requests">Requests</ToggleButton>
+        <ToggleButton onClick={getConnections} sx={{ width: "120px", ml: 1, color: "gray" }} value="Connections">Connections</ToggleButton>
+        <ToggleButton onClick={getRequests} sx={{ width: "120px", color: "gray" }} value="Requests">Requests</ToggleButton>
       </ToggleButtonGroup>
 
 
-      <Box sx={{ mt: 2 , bgcolor:"#1e1e1e"}}>
+      <Box sx={{ mt: 2, bgcolor: "#1e1e1e" }}>
         {loading && (
           <Box display="flex" justifyContent="center" alignItems="center" mt={3}>
             <CircularProgress />
