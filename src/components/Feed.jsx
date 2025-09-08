@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Stack, } from '@mui/material'
+import { Box, Button, CircularProgress, Stack, Typography, } from '@mui/material'
 import UserCard from './UserCard'
 import axios from "axios"
 import { useDispatch, useSelector } from "react-redux"
@@ -34,9 +34,9 @@ const Feed = () => {
         <Button disabled>
           <CircularProgress size={25} sx={{ color: "#fff", mr: 1 }} />
         </Button>
-      </Stack> : <Stack display="flex" justifyContent={"center"} flexDirection={"row"} pt={2} gap={2} flexWrap={"wrap"} flexShrink={0}>
+      </Stack> : (feedUsers.length > 0 ? <Stack display="flex" justifyContent={"center"} flexDirection={"row"} pt={2} gap={2} flexWrap={"wrap"} flexShrink={0}>
         {feedUsers.map((user, index) => <UserCard key={index} user={user} />)}
-      </Stack>
+      </Stack> : <Typography display="flex" justifyContent="center" textAlign="center" mt={5} gap={2} variant='h6' alignItems="center">No user found 🥲!<GroupIcon sx={{ opacity: "50%" }} /></Typography>)
       }
     </Box>
   )
