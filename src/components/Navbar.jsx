@@ -51,7 +51,7 @@ const Navbar = () => {
       <AppBar position='sticky' sx={{backgroundColor: "#1e1e1e"}} >
         <StyledToolbar  >
           <Typography fontWeight={"bold"} variant='h5'>
-            <span style={{color:"transparent", background:"linear-gradient(90deg, #00c6ff,#00c5aa)", backgroundClip:"text", overflow:"hidden"}}>DevTinder</span></Typography>
+            <span style={{color:"transparent", background:"linear-gradient(90deg, #00c6ff, #00c5aa)", backgroundClip:"text", overflow:"hidden"}}>DevTinder</span></Typography>
           <Box display="flex" alignItems="center" gap={2}>
 
             {userData ? <Avatar sx={{ display: { sm: "block", xs: "none" } }} onClick={e => setOpen(true)} src={userData?.avatar} />

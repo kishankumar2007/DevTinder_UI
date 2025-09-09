@@ -55,7 +55,7 @@ const Login = () => {
         <Box flex={5} alignContent={"center"} mt={12} >
 
             <Typography variant='h4' textAlign={"center"}>
-                <span style={{ color: "transparent", background: "linear-gradient(90deg, #00c6ff,#00c5aa)", backgroundClip: "text", overflow: "hidden" }}>Login</span>
+                <span style={{ color: "transparent", background: "linear-gradient(90deg, #00c6ff,#00c5aa)", backgroundClip: "text", overflow: "hidden" }}> Login </span>
             </Typography>
             <Stack maxWidth={400} p={2} mx="auto" display="flex" alignItems={"center"} flexDirection="column" gap={2} required>
                 <StyledTextField value={email} onChange={e => setEmail(e.target.value)} fullWidth id="email" label="Email" variant="outlined" required />
