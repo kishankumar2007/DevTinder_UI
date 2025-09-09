@@ -22,10 +22,14 @@ const Premium = () => {
         "Access to Exclusive Events & Live Matching"
     ])
     const verifyPayment = async () => {
-        const response = await axios.get(BASE_URL + "/premium/verify", { withCredentials: true })
-        console.log(response.data)
-        if (response.data.isPremium) {
-            setIsUserPremium(true)
+        try {
+            const response = await axios.get(BASE_URL + "/premium/verify", { withCredentials: true })
+            console.log(response.data)
+            if (response.data.isPremium) {
+                setIsUserPremium(true)
+            }
+        } catch (error) {
+            console.log(error.message)
         }
     }
     const handleBuyButton = async (type) => {
