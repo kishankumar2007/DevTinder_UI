@@ -4,9 +4,10 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { useState } from 'react';
 import axios from 'axios';
 import BASE_URL from "../constant.js"
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../store/authSlice.js';
 
 const Premium = () => {
-    const [isUserPremium, setIsUserPremium] = useState(false)
     const [proFeature, setProFeature] = useState([
         "Unlimited Messaging",
         "Profile Boosts",
@@ -21,13 +22,16 @@ const Premium = () => {
         "Incognito Mode / Privacy Mode",
         "Access to Exclusive Events & Live Matching"
     ])
-    const verifyPayment = async () => {
+    const userData = useSelector(state => state.auth.userData)
+    const dispath = useDispatch()
+
+    const verifyPayment = async (response) => {
         try {
-            console.log("Calling Verify Payment")
-            const response = await axios.get(BASE_URL + "/premium/verify", { withCredentials: true })
-            console.log(response.data)
-            if (response.data.isPremium) {
-                setIsUserPremium(true)
+            const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = response
+            const { data: { paymentInfo, user } } = await axios.post(BASE_URL + "/verify-payment", { razorpay_order_id, razorpay_payment_id, razorpay_signature }, { withCredentials: true })
+            console.log(paymentInfo, user)
+            if (user) {
+                dispath(login(user))
             }
         } catch (error) {
             console.log(error.message)
@@ -67,7 +71,7 @@ const Premium = () => {
     }
 
     return (
-        isUserPremium ? "user is premium" : <>
+        userData.isPremium ? "user is premium" : <>
             <Card variant="outlined" sx={{ maxWidth: 300, mb: 1, bgcolor: "#212121", border: "2px solid #353535", color: "#f9f9f9", borderRadius: 5 }}>
                 <Box sx={{ p: 2 }}>
                     <Stack
