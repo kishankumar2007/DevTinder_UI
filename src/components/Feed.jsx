@@ -26,7 +26,7 @@ const Feed = () => {
     };
 
     fetchUsers();
-  }, [dispatch]);
+  }, []);
 
 
   return (
@@ -37,7 +37,7 @@ const Feed = () => {
         </Button>
       </Stack> : (feedUsers.length > 0 ? <Stack display="flex" justifyContent={"center"} flexDirection={"row"} pt={2} gap={2} flexWrap={"wrap"} flexShrink={0}>
         {feedUsers.map((user, index) => <UserCard key={index} user={user} />)}
-      </Stack> : <Typography display="flex" justifyContent="center" textAlign="center" mt={5} gap={2} variant='h6' alignItems="center" sx={{color:"#f9f9f9", mt:5}} >No user found! <GroupIcon sx={{ opacity: "50%" }} /></Typography>)
+      </Stack> : <Typography display="flex" justifyContent="center" textAlign="center" mt={5} gap={2} variant='h6' alignItems="center" sx={{ color: "#f9f9f9", mt: 5 }} >No user found! <GroupIcon sx={{ opacity: "50%" }} /></Typography>)
       }
     </Box>
   )

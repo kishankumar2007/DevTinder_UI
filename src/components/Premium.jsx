@@ -23,6 +23,7 @@ const Premium = () => {
     ])
     const verifyPayment = async () => {
         try {
+            console.log("Calling Verify Payment")
             const response = await axios.get(BASE_URL + "/premium/verify", { withCredentials: true })
             console.log(response.data)
             if (response.data.isPremium) {
@@ -56,7 +57,7 @@ const Premium = () => {
                 "theme": {
                     "color": "#00c6ff"
                 },
-                Header: verifyPayment
+                handler: verifyPayment
             }
             const rzp = new window.Razorpay(options)
             rzp.open()

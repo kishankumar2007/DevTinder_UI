@@ -18,7 +18,6 @@ const App = () => {
     const getUserProfile = async () => {
       const res = await axios.get(BASE_URL + "/profile/view", { withCredentials: true })
       const userConnection = await axios.get(BASE_URL + "/user/connections",{withCredentials:true})
-      console.log(userConnection.data)
       if(userConnection.data.length > 0){
         dispatch(addConnection(userConnection.data))
       }
