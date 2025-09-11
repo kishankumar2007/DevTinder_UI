@@ -75,7 +75,7 @@ const Premium = () => {
     }
 
     return (
-        userData.isPremium ? <Typography fontWeight={"bold"} sx={{ textAlign: "center", mt: 3 }} variant='h6' color='#f9f9f9'>You are already Premium</Typography> : <Stack
+        userData.isPremium ? <Typography fontWeight={"bold"} sx={{ textAlign: "center", mt: 3 }} variant='h6' color='#f9f9f9'>You are already Premium user</Typography> : <Stack
             direction="row"
             gap={3}
             justifyContent="center"

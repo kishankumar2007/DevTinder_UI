@@ -7,8 +7,8 @@ const PaymentSuccess = () => {
     const navigate = useNavigate()
     setTimeout(() => navigate("/premium"), 3000)
     return (
-        <Typography varient="h6" sx={{ mt: 3, color: "green" }}>
-            <WorkspacePremiumIcon /> Payment Successful
+        <Typography fontSize={30}  varient="h1" sx={{ mt: 5 , color: "green", textAlign:"center", width:"100%" }}>
+            <WorkspacePremiumIcon sx={{fontSize:30}} /> Payment Successful
         </Typography>
     )
 }
