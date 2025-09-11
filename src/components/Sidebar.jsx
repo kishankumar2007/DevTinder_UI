@@ -11,6 +11,7 @@ import { connectionRequest } from "../store/connectionSlice"
 import { useDispatch, useSelector } from 'react-redux';
 import GroupIcon from '@mui/icons-material/Group';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const Sidebar = () => {
   const [value, setValue] = useState('Connections')
@@ -37,38 +38,48 @@ const Sidebar = () => {
     }
   }
   return (
-    <Box alignItems="center" sx={{display: { xs: "none", sm: "block", borderRight: "2px solid #242424", maxWidth:300} }} p={2} flex="1">
+    <Box alignItems="center" sx={{ display: { xs: "none", sm: "block", borderRight: "2px solid #242424", maxWidth: 300 } }} p={2} flex="1">
       <List
-        sx={{ width: '100%', maxWidth: 300, color:"#f9f9f9" }}
+        sx={{ width: '100%', maxWidth: 300, color: "#f9f9f9" }}
         aria-label="contacts"
       >
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/"} >
-          <ListItem sx={{"&:hover":{bgcolor:"#242424", borderRadius:2}}} disablePadding>
+          <ListItem sx={{ "&:hover": { bgcolor: "#242424", borderRadius: 2 } }} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <Home sx={{color:"gray"}} />
+                <Home sx={{ color: "gray" }} />
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItemButton>
           </ListItem>
         </Link>
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/profile"} >
-          <ListItem sx={{"&:hover":{bgcolor:"#242424", borderRadius:2}}} disablePadding>
+          <ListItem sx={{ "&:hover": { bgcolor: "#242424", borderRadius: 2 } }} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <AccountCircleIcon sx={{color:"gray"}} />
+                <AccountCircleIcon sx={{ color: "gray" }} />
               </ListItemIcon>
               <ListItemText primary="Profile" />
             </ListItemButton>
           </ListItem>
         </Link>
+
         <Link style={{ textDecoration: "none", color: "inherit" }} to={"/feed"} >
-          <ListItem sx={{"&:hover":{bgcolor:"#242424", borderRadius:2}}} disablePadding>
+          <ListItem sx={{ "&:hover": { bgcolor: "#242424", borderRadius: 2 } }} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <ExploreIcon sx={{color:"gray"}} />
+                <ExploreIcon sx={{ color: "gray" }} />
               </ListItemIcon>
               <ListItemText primary="Explore" />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+
+        <Link style={{ textDecoration: "none", color: "inherit" }} to={"/premium"} >
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon><CheckCircleOutlineIcon sx={{ color: "goldenrod" }} /></ListItemIcon>
+              <ListItemText sx={{ color: "goldenrod" }} primary="Premium" />
             </ListItemButton>
           </ListItem>
         </Link>
@@ -81,15 +92,15 @@ const Sidebar = () => {
         onChange={''}
         aria-label="Platform"
       >
-        <ToggleButton onClick={getConnections} sx={{ width: "130px",color:"#f9f9f9" }} value="Connections">Connections</ToggleButton>
-        <ToggleButton onClick={getRequests} sx={{ width: "130px", color:"#f9f9f9" }} value="Requests">Requests</ToggleButton>
+        <ToggleButton onClick={getConnections} sx={{ width: "130px", color: "#f9f9f9" }} value="Connections">Connections</ToggleButton>
+        <ToggleButton onClick={getRequests} sx={{ width: "130px", color: "#f9f9f9" }} value="Requests">Requests</ToggleButton>
       </ToggleButtonGroup>
 
       <List
         sx={{
           width: '100%',
           maxWidth: 360,
-          color:"#f9f9f9",
+          color: "#f9f9f9",
           position: 'relative',
           overflow: 'auto',
           maxHeight: 400,

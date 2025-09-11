@@ -5,17 +5,18 @@ import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useDispatch, useSelector } from 'react-redux';
-import { ListItem, ListItemButton, ListItemIcon, ListItemText, ToggleButton, ToggleButtonGroup,  Typography,  List, CircularProgress } from '@mui/material';
+import { ListItem, ListItemButton, ListItemIcon, ListItemText, ToggleButton, ToggleButtonGroup, Typography, List, CircularProgress } from '@mui/material';
 import SmallCard from './SmallCard';
 import GroupIcon from '@mui/icons-material/Group';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link, useNavigate } from 'react-router-dom';
 import { Home, Logout } from '@mui/icons-material';
 import ExploreIcon from '@mui/icons-material/Explore';
-import {logout} from "../store/authSlice"
+import { logout } from "../store/authSlice"
 import { addConnection, connectionRequest } from '../store/connectionSlice';
 import BASE_URL from '../constant';
 import { toast } from 'react-toastify';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 export default function TemporaryDrawer() {
   const [open, setOpen] = useState(false);
@@ -123,6 +124,15 @@ export default function TemporaryDrawer() {
             <ListItemButton>
               <ListItemIcon><ExploreIcon sx={{ color: "gray" }} /></ListItemIcon>
               <ListItemText primary="Explore" />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+
+        <Link style={{ textDecoration: "none", color: "inherit" }} to={"/premium"} >
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon><CheckCircleOutlineIcon sx={{ color: "goldenrod" }} /></ListItemIcon>
+              <ListItemText sx={{ color: "goldenrod" }} primary="Premium" />
             </ListItemButton>
           </ListItem>
         </Link>

@@ -62,10 +62,10 @@ const UserCard = ({ user }) => {
         <Typography variant="h6">
           {user?.firstName + " " + user?.lastName}
         </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary', textTransform: "capitalize" }}>
+        <Typography variant="body2" sx={{ color: '#f9f9f9', textTransform: "capitalize" }}>
           {user?.age && user?.gender} {user?.age && `| ${user?.age}`}
         </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary', py: 0 }}>
+        <Typography variant="body2" sx={{ color: '#f9f9f9', py: 0 }}>
           {user?.about}
         </Typography>
       </CardContent>

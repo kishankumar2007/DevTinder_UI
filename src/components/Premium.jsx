@@ -6,6 +6,8 @@ import axios from 'axios';
 import BASE_URL from "../constant.js"
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store/authSlice.js';
+import PaymentSuccess from './PaymentSuccess.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const Premium = () => {
     const [proFeature, setProFeature] = useState([
@@ -24,6 +26,7 @@ const Premium = () => {
     ])
     const userData = useSelector(state => state.auth.userData)
     const dispath = useDispatch()
+    const navigate = useNavigate()
 
     const verifyPayment = async (response) => {
         try {
@@ -32,6 +35,7 @@ const Premium = () => {
             console.log(paymentInfo, user)
             if (user) {
                 dispath(login(user))
+                navigate("/payment-success")
             }
         } catch (error) {
             console.log(error.message)
@@ -71,66 +75,142 @@ const Premium = () => {
     }
 
     return (
-        userData.isPremium ? "user is premium" : <>
-            <Card variant="outlined" sx={{ maxWidth: 300, mb: 1, bgcolor: "#212121", border: "2px solid #353535", color: "#f9f9f9", borderRadius: 5 }}>
-                <Box sx={{ p: 2 }}>
-                    <Stack
-                        direction="row"
-                        sx={{ justifyContent: 'space-between', alignItems: 'center' }}
-                    >
-                        <WorkspacePremiumIcon sx={{ color: "goldenrod", fontSize: "30px" }} />
-                        <Typography fontWeight={"bold"} fontSize={"28px"} gutterBottom variant="h5" component="div">
+        userData.isPremium ? <Typography fontWeight={"bold"} sx={{ textAlign: "center", mt: 3 }} variant='h6' color='#f9f9f9'>You are already Premium</Typography> : <Stack
+            direction="row"
+            gap={3}
+            justifyContent="center"
+            flexWrap="wrap"
+            sx={{ py: 4 }}
+        >
+            {/* Pro Plan */}
+            <Card
+                variant="outlined"
+                sx={{
+                    maxWidth: 280,
+                    bgcolor: "#1e1e1e",
+                    border: "1.5px solid #353535",
+                    color: "#f9f9f9",
+                    borderRadius: 4,
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                    transition: "transform 0.2s ease",
+                    "&:hover": { transform: "translateY(-6px)" }
+                }}
+            >
+                <Box sx={{ p: 3 }}>
+                    <Stack direction="row" justifyContent="space-between" alignItems="center">
+                        <WorkspacePremiumIcon sx={{ color: "goldenrod", fontSize: 30 }} />
+                        <Typography fontWeight="bold" fontSize="22px">
                             Pro
                         </Typography>
-                        <Typography color='goldenrod' fontWeight={"bold"} gutterBottom variant="h5" component="div">
-                            <span style={{ color: "transparent", background: "linear-gradient(90deg, #ffd700, #daa520)", backgroundClip: "text", overflow: "hidden" }}> ₹99/- </span>
+                        <Typography fontWeight="bold">
+                            <span
+                                style={{
+                                    color: "transparent",
+                                    background: "linear-gradient(90deg,#ffd700,#daa520)",
+                                    WebkitBackgroundClip: "text"
+                                }}
+                            >
+                                ₹99/-
+                            </span>
                         </Typography>
                     </Stack>
-                    {proFeature.map((feature, idx) => (
-                        <Stack key={idx} flexDirection={"row"} gap={2} my={1}>
-                            <CheckCircleOutlineIcon sx={{ color: "goldenrod", }} />
-                            <Typography variant="body2" sx={{ color: '#f9f9f9', letterSpacing: 1 }}>
-                                {feature}
-                            </Typography>
-                        </Stack>
-                    ))}
+
+                    <Stack sx={{ mt: 2 }}>
+                        {proFeature.map((feature, idx) => (
+                            <Stack key={idx} direction="row" gap={1.5} alignItems="center" my={1}>
+                                <CheckCircleOutlineIcon sx={{ color: "goldenrod" }} />
+                                <Typography variant="body2" sx={{ color: "#eaeaea", letterSpacing: 0.5 }}>
+                                    {feature}
+                                </Typography>
+                            </Stack>
+                        ))}
+                    </Stack>
                 </Box>
                 <Divider />
-                <Box sx={{ py: 2, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                    <Button onClick={() => handleBuyButton("pro")} variant='contaiend' sx={{ color: "#242424", background: "linear-gradient(90deg,#DAA520,#FFD700)", textTransform: "capitalize" }}>Get Plan</Button>
-                </Box>
-            </Card>
-            <Card variant="outlined" sx={{ maxWidth: 300, bgcolor: "#212121", border: "2px solid #353535", color: "#f9f9f9", borderRadius: 5 }}>
-                <Box sx={{ p: 2 }}>
-                    <Stack
-                        display={"flex"}
-                        direction="row"
-                        sx={{ justifyContent: 'space-between', alignItems: 'center' }}
+                <Box sx={{ py: 2, display: "flex", justifyContent: "center" }}>
+                    <Button
+                        onClick={() => handleBuyButton("pro")}
+                        variant="contained"
+                        sx={{
+                            background: "linear-gradient(90deg,#DAA520,#FFD700)",
+                            color: "#242424",
+                            fontWeight: "bold",
+                            textTransform: "capitalize",
+                            borderRadius: 2,
+                            px: 3,
+                            "&:hover": { opacity: 0.9 }
+                        }}
                     >
-                        <WorkspacePremiumIcon sx={{ color: "goldenrod", fontSize: "30px" }} />
-                        <Typography fontWeight={"bold"} fontSize={"28px"} gutterBottom variant="h5" component="div">
-                            Super
-                        </Typography>
-                        <Typography color='goldenrod' fontWeight={"bold"} gutterBottom variant="h5" component="div">
-                            <span style={{ color: "transparent", background: "linear-gradient(90deg, #ffd700, #daa520)", backgroundClip: "text", overflow: "hidden" }}> ₹199/- </span>
-                        </Typography>
-                    </Stack>
-                    {superFeature.map((feature, idx) => (
-                        <Stack key={idx} flexDirection={"row"} gap={2} my={1}>
-                            <CheckCircleOutlineIcon sx={{ color: "goldenrod", }} />
-                            <Typography variant="body2" sx={{ color: '#f9f9f9', letterSpacing: 1, m: 0 }}>
-                                {feature}
-                            </Typography>
-                        </Stack>
-                    ))}
-                </Box>
-                <Divider />
-                <Box sx={{ py: 2, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                    <Button onClick={() => handleBuyButton("super")} variant='contaiend' sx={{ color: "#242424", background: "linear-gradient(90deg,#DAA520,#FFD700)", textTransform: "capitalize" }}>Get Plan</Button>
+                        Get Plan
+                    </Button>
                 </Box>
             </Card>
 
-        </>
+            {/* Super Plan */}
+            <Card
+                variant="outlined"
+                sx={{
+                    maxWidth: 280,
+                    bgcolor: "#1e1e1e",
+                    border: "1.5px solid #353535",
+                    color: "#f9f9f9",
+                    borderRadius: 4,
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                    transition: "transform 0.2s ease",
+                    "&:hover": { transform: "translateY(-6px)" }
+                }}
+            >
+                <Box sx={{ p: 3 }}>
+                    <Stack direction="row" justifyContent="space-between" alignItems="center">
+                        <WorkspacePremiumIcon sx={{ color: "goldenrod", fontSize: 30 }} />
+                        <Typography fontWeight="bold" fontSize="22px">
+                            Super
+                        </Typography>
+                        <Typography fontWeight="bold">
+                            <span
+                                style={{
+                                    color: "transparent",
+                                    background: "linear-gradient(90deg,#ffd700,#daa520)",
+                                    WebkitBackgroundClip: "text"
+                                }}
+                            >
+                                ₹199/-
+                            </span>
+                        </Typography>
+                    </Stack>
+
+                    <Stack sx={{ mt: 2 }}>
+                        {superFeature.map((feature, idx) => (
+                            <Stack key={idx} direction="row" gap={1.5} alignItems="center" my={1}>
+                                <CheckCircleOutlineIcon sx={{ color: "goldenrod" }} />
+                                <Typography variant="body2" sx={{ color: "#eaeaea", letterSpacing: 0.5 }}>
+                                    {feature}
+                                </Typography>
+                            </Stack>
+                        ))}
+                    </Stack>
+                </Box>
+                <Divider />
+                <Box sx={{ py: 2, display: "flex", justifyContent: "center" }}>
+                    <Button
+                        onClick={() => handleBuyButton("super")}
+                        variant="contained"
+                        sx={{
+                            background: "linear-gradient(90deg,#DAA520,#FFD700)",
+                            color: "#242424",
+                            fontWeight: "bold",
+                            textTransform: "capitalize",
+                            borderRadius: 2,
+                            px: 3,
+                            "&:hover": { opacity: 0.9 }
+                        }}
+                    >
+                        Get Plan
+                    </Button>
+                </Box>
+            </Card>
+        </Stack>
+
     )
 }
 

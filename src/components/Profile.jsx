@@ -15,16 +15,16 @@ const Profile = () => {
   const [gender, setGender] = useState('')
   const [about, setAbout] = useState('')
   const [avatar, setAvatar] = useState('')
-  const [email, setEmail] = useState('')
+  const [age, setAge] = useState('')
   const [fileId, setFileId] = useState('')
 
   const user = useSelector(state => state.auth.userData)
   const dispatch = useDispatch();
-  const userDetails = { firstName, lastName, gender, about, avatar }
+  const userDetails = { firstName, lastName, gender, about, avatar,age }
   useEffect(() => {
     setFirstName(user?.firstName || '')
     setLastName(user?.lastName || '')
-    setEmail(user?.email || '')
+    setAge(user?.age || '')
     setGender(user?.gender || '')
     setAbout(user?.about || '')
     setAvatar(user?.avatar || "")
@@ -80,7 +80,7 @@ const Profile = () => {
           <StyledTextField value={lastName} onChange={e => setLastName(e.target.value)} id="last-name" label="Last Name" variant="outlined" required fullWidth />
         </Box>
 
-        <StyledTextField value={email} id="email" label="Email" variant="outlined" disabled fullWidth />
+        <StyledTextField onChange={e => setAge(e.target.value)} value={age} id="age" label="Age" variant="outlined" fullWidth />
 
         <StyledTextField value={about} onChange={e => setAbout(e.target.value)} id="about" label="About" variant="outlined" required fullWidth />
 
@@ -114,7 +114,7 @@ const Profile = () => {
               value={gender}
               onChange={(e) => setGender(e.target.value)}
             >
-              <MenuItem value="male">Male</MenuItem>
+              <MenuItem selected value="male">Male</MenuItem>
               <MenuItem value="female">Female</MenuItem>
               <MenuItem value="other">Other</MenuItem>
             </TextField>

@@ -5,7 +5,8 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { Login, Signup, Profile, Feed } from "./index.js"
 import AuthLayout from './Layout/AuthLayout.jsx'
-
+import Premium from "./components/Premium.jsx"
+import PaymentSuccess from './components/PaymentSuccess.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -45,6 +46,22 @@ const router = createBrowserRouter([
         element: (
           <AuthLayout>
             <Feed />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/premium",
+        element: (
+          <AuthLayout>
+            <Premium />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/payment-success",
+        element: (
+          <AuthLayout>
+            <PaymentSuccess />
           </AuthLayout>
         ),
       },
